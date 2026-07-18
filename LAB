@@ -1,18 +1,1 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
 
-# สร้างข้อมูลดิบจำลองเกาะกลุ่มโจรสลัดวันพีช (Dirty Data)
-raw_data = {
-    'Character_ID': [101, 102, 103, 102, 104, 105, 106, 107, 108, 109],
-    'Name': ['Luffy', 'Zoro', 'Nami', 'Zoro', 'Sanji', 'Chopper', 'Robin', 'Franky', 'Brook', 'Kaido'],
-    'Role': ['Captain', 'Swordsman', 'Navigator', 'Swordsman', 'Cook', 'Doctor', 'Archaeologist', 'Shipwright', 'Musician', 'Yonko'],
-    'Age': [19, 21, 20, 21, 21, 17, 30, 36, 90, 59],
-    'Bounty_Million': [3000, 1111, 366, 1111, 1032, np.nan, 930, 394, 383, 4611],
-    'Has_Devil_Fruit': ['Yes', 'No', 'No', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'Yes']
-}
-
-df = pd.DataFrame(raw_data)
-# จงใจใส่ข้อมูล Outlier เข้าไปในช่องอายุของบรู๊ค (อายุ 90) และค่าหัวของไคโด (4611) เพื่อใช้ทดสอบ
-print("--- ข้อมูลดิบวันพีชสำเร็จแล้ว ---")
