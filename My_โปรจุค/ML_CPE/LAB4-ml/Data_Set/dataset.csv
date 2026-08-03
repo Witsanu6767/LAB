@@ -1,50 +1,50 @@
-Car_ID,Type_car,Average_EXP (Years),Weight (kg),Height (cm),Price_current,Habitat,Conservation_Status,Domesticated,Primary_Region,Nocturnal,Speed (km/h),Intelligence_Level
-CAR_1,Giraffe,59,865.12,232.66,Carnivore,Urban,Critically Endangered,Yes,Australia,Yes,25.03,High
-CAR_2,Giraffe,67,452.46,359.8,Herbivore,Desert,Vulnerable,Yes,Europe,No,27.97,Medium
-CAR_3,Panda,54,17.65,393.57,Omnivore,Ocean,Critically Endangered,No,Antarctica,Yes,77.03,Low
-CAR_4,Deer,32,2990.88,348.27,Herbivore,Forest,Critically Endangered,No,Antarctica,Yes,52.95,Medium
-CAR_5,Elephant,71,1398.41,238.9,Carnivore,Desert,Vulnerable,Yes,South America,Yes,52.19,Low
-CAR_6,Lion,79,417.37,114.6,Carnivore,Urban,Extinct,Yes,North America,No,19.72,Medium
-CAR_7,Cat,33,2829.19,306.21,Herbivore,Grassland,Least Concern,No,Europe,Yes,64.47,High
-CAR_8,Horse,79,300.43,154,Herbivore,Grassland,Critically Endangered,Yes,Australia,No,71.36,Medium
-CAR_9,Panda,40,2555.19,368.77,Omnivore,Grassland,Critically Endangered,No,Australia,No,9.79,Low
-CAR_10,Panda,37,336.63,151.99,Omnivore,Urban,Critically Endangered,Yes,Australia,No,43.87,High
-CAR_11,Giraffe,11,4274.29,280.06,Omnivore,Urban,Extinct,No,Australia,No,40.48,High
-CAR_12,Dog,75,280.21,60.18,Carnivore,Forest,Endangered,Yes,Antarctica,Yes,85.32,Medium
-CAR_13,Lion,45,3402.38,178.4,Carnivore,Forest,Critically Endangered,Yes,South America,No,30.66,Medium
-CAR_14,Horse,24,385.63,151.22,Herbivore,Forest,Extinct,Yes,Africa,No,51.04,Medium
-CAR_15,Dog,52,2583.33,24.25,Herbivore,Urban,Endangered,Yes,Antarctica,No,85.73,Low
-CAR_16,Horse,37,409.03,31.69,Herbivore,Forest,Critically Endangered,No,North America,No,15.03,Low
-CAR_17,Tiger,60,4512.69,394.91,Herbivore,Grassland,Vulnerable,No,Europe,Yes,78.65,Medium
-CAR_18,Dog,7,1581.24,291.55,Herbivore,Grassland,Extinct,Yes,North America,Yes,82.52,Medium
-CAR_19,Horse,76,1739.92,341.49,Omnivore,Wetland,Least Concern,No,Antarctica,No,38.62,Medium
-CAR_20,Tiger,40,417.45,204.99,Omnivore,Forest,Extinct,No,South America,No,71.08,Low
-CAR_21,Panda,10,3855.88,171.58,Herbivore,Urban,Least Concern,No,South America,No,25.61,Low
-CAR_22,Giraffe,52,399.34,264.8,Omnivore,Grassland,Vulnerable,No,Africa,Yes,19.37,Medium
-CAR_23,Lion,59,3834.11,219.45,Herbivore,Forest,Least Concern,No,Africa,No,11.26,Low
-CAR_24,Giraffe,34,1792.83,121.37,Herbivore,Urban,Least Concern,No,Antarctica,No,43.37,High
-CAR_25,Elephant,30,3791.64,206.78,Carnivore,Wetland,Critically Endangered,Yes,Africa,No,18.73,Low
-CAR_26,Elephant,38,1786.91,396.66,Carnivore,Forest,Vulnerable,No,Antarctica,Yes,67.5,Low
-CAR_27,Tiger,50,759.11,46.16,Omnivore,Urban,Critically Endangered,Yes,Antarctica,No,18.94,Medium
-CAR_28,Horse,67,3112.38,263.27,Herbivore,Grassland,Endangered,Yes,Africa,Yes,97.05,Medium
-CAR_29,Panda,17,889.46,271.94,Herbivore,Desert,Critically Endangered,Yes,South America,Yes,33.36,High
-CAR_30,Dog,66,4939.14,46.36,Omnivore,Urban,Least Concern,No,Asia,Yes,23.79,Medium
-CAR_31,Cat,56,1724.03,358.28,Omnivore,Ocean,Endangered,No,North America,Yes,96.73,High
-CAR_32,Elephant,72,3974.51,123.54,Omnivore,Desert,Endangered,Yes,North America,No,42.6,High
-CAR_33,Cat,16,2905.2,235.96,Carnivore,Wetland,Critically Endangered,No,Africa,No,17.57,Low
-CAR_34,Lion,67,3402,144.45,Omnivore,Wetland,Critically Endangered,Yes,Australia,No,47.69,High
-CAR_35,Panda,38,858.87,98.35,Carnivore,Grassland,Least Concern,No,Australia,No,59.89,High
-CAR_36,Dog,79,3865.57,31.92,Herbivore,Wetland,Least Concern,Yes,Antarctica,No,20.47,Low
-CAR_37,Lion,32,976.93,203.25,Herbivore,Forest,Extinct,No,Europe,Yes,9.38,High
-CAR_38,Horse,15,158.41,203.81,Herbivore,Forest,Extinct,No,Africa,No,60.14,Low
-CAR_39,Elephant,21,4144.08,326.99,Carnivore,Grassland,Least Concern,Yes,South America,No,22.24,Medium
-CAR_40,Deer,59,2408.24,179.72,Herbivore,Wetland,Vulnerable,No,Europe,No,85.02,Medium
-CAR_41,Giraffe,19,3248.81,293.35,Omnivore,Forest,Endangered,No,Asia,Yes,53.39,High
-CAR_42,Panda,42,573.38,156.8,Omnivore,Ocean,Extinct,No,Europe,Yes,97.09,Low
-CAR_43,Kangaroo,51,1647.58,94.58,Carnivore,Forest,Least Concern,Yes,Africa,No,11.96,Low
-CAR_44,Horse,59,1648.23,192.53,Omnivore,Urban,Endangered,No,Europe,No,77.92,Medium
-CAR_45,Dog,77,732.07,37.86,Omnivore,Grassland,Critically Endangered,Yes,Africa,No,7.08,High
-CAR_46,Cat,66,3550.44,211.39,Carnivore,Ocean,Extinct,Yes,Africa,No,18.51,Medium
-CAR_47,Cat,14,106.3,110.68,Herbivore,Wetland,Extinct,No,Africa,Yes,73.96,Medium
-CAR_48,Panda,60,3925.77,339.35,Omnivore,Forest,Extinct,Yes,Asia,Yes,66.78,High
-CAR_49,Panda,51,4921.1,343.95,Omnivore,Grassland,Endangered,No,South America,No,27.54,High
+Car_ID,Type_car,Average_EXP (Years),Weight (kg),Height (cm),Price_current,Primary_Region,Speed (km/h)
+CAR_1,Giraffe,59,865.12,232.66,Carnivore,Australia,25.03
+CAR_2,Giraffe,67,452.46,359.8,Herbivore,Europe,27.97
+CAR_3,Panda,54,17.65,393.57,Omnivore,Antarctica,77.03
+CAR_4,Deer,32,2990.88,348.27,Herbivore,Antarctica,52.95
+CAR_5,Elephant,71,1398.41,238.9,Carnivore,South America,52.19
+CAR_6,Lion,79,417.37,114.6,Carnivore,North America,19.72
+CAR_7,Cat,33,2829.19,306.21,Herbivore,Europe,64.47
+CAR_8,Horse,79,300.43,154,Herbivore,Australia,71.36
+CAR_9,Panda,40,2555.19,368.77,Omnivore,Australia,9.79
+CAR_10,Panda,37,336.63,151.99,Omnivore,Australia,43.87
+CAR_11,Giraffe,11,4274.29,280.06,Omnivore,Australia,40.48
+CAR_12,Dog,75,280.21,60.18,Carnivore,Antarctica,85.32
+CAR_13,Lion,45,3402.38,178.4,Carnivore,South America,30.66
+CAR_14,Horse,24,385.63,151.22,Herbivore,Africa,51.04
+CAR_15,Dog,52,2583.33,24.25,Herbivore,Antarctica,85.73
+CAR_16,Horse,37,409.03,31.69,Herbivore,North America,15.03
+CAR_17,Tiger,60,4512.69,394.91,Herbivore,Europe,78.65
+CAR_18,Dog,7,1581.24,291.55,Herbivore,North America,82.52
+CAR_19,Horse,76,1739.92,341.49,Omnivore,Antarctica,38.62
+CAR_20,Tiger,40,417.45,204.99,Omnivore,South America,71.08
+CAR_21,Panda,10,3855.88,171.58,Herbivore,South America,25.61
+CAR_22,Giraffe,52,399.34,264.8,Omnivore,Africa,19.37
+CAR_23,Lion,59,3834.11,219.45,Herbivore,Africa,11.26
+CAR_24,Giraffe,34,1792.83,121.37,Herbivore,Antarctica,43.37
+CAR_25,Elephant,30,3791.64,206.78,Carnivore,Africa,18.73
+CAR_26,Elephant,38,1786.91,396.66,Carnivore,Antarctica,67.5
+CAR_27,Tiger,50,759.11,46.16,Omnivore,Antarctica,18.94
+CAR_28,Horse,67,3112.38,263.27,Herbivore,Africa,97.05
+CAR_29,Panda,17,889.46,271.94,Herbivore,South America,33.36
+CAR_30,Dog,66,4939.14,46.36,Omnivore,Asia,23.79
+CAR_31,Cat,56,1724.03,358.28,Omnivore,North America,96.73
+CAR_32,Elephant,72,3974.51,123.54,Omnivore,North America,42.6
+CAR_33,Cat,16,2905.2,235.96,Carnivore,Africa,17.57
+CAR_34,Lion,67,3402,144.45,Omnivore,Australia,47.69
+CAR_35,Panda,38,858.87,98.35,Carnivore,Australia,59.89
+CAR_36,Dog,79,3865.57,31.92,Herbivore,Antarctica,20.47
+CAR_37,Lion,32,976.93,203.25,Herbivore,Europe,9.38
+CAR_38,Horse,15,158.41,203.81,Herbivore,Africa,60.14
+CAR_39,Elephant,21,4144.08,326.99,Carnivore,South America,22.24
+CAR_40,Deer,59,2408.24,179.72,Herbivore,Europe,85.02
+CAR_41,Giraffe,19,3248.81,293.35,Omnivore,Asia,53.39
+CAR_42,Panda,42,573.38,156.8,Omnivore,Europe,97.09
+CAR_43,Kangaroo,51,1647.58,94.58,Carnivore,Africa,11.96
+CAR_44,Horse,59,1648.23,192.53,Omnivore,Europe,77.92
+CAR_45,Dog,77,732.07,37.86,Omnivore,Africa,7.08
+CAR_46,Cat,66,3550.44,211.39,Carnivore,Africa,18.51
+CAR_47,Cat,14,106.3,110.68,Herbivore,Africa,73.96
+CAR_48,Panda,60,3925.77,339.35,Omnivore,Asia,66.78
+CAR_49,Panda,51,4921.1,343.95,Omnivore,South America,27.54
