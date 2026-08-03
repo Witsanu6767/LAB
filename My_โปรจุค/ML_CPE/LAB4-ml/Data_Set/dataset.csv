@@ -1,4 +1,4 @@
-Car_ID,Type_car,Average_Lifespan (Years),Weight (kg),Height (cm),Price_current,Habitat,Conservation_Status,Domesticated,Primary_Region,Nocturnal,Speed (km/h),Intelligence_Level
+Car_ID,Type_car,Average_EXP (Years),Weight (kg),Height (cm),Price_current,Habitat,Conservation_Status,Domesticated,Primary_Region,Nocturnal,Speed (km/h),Intelligence_Level
 CAR_1,Giraffe,59,865.12,232.66,Carnivore,Urban,Critically Endangered,Yes,Australia,Yes,25.03,High
 CAR_2,Giraffe,67,452.46,359.8,Herbivore,Desert,Vulnerable,Yes,Europe,No,27.97,Medium
 CAR_3,Panda,54,17.65,393.57,Omnivore,Ocean,Critically Endangered,No,Antarctica,Yes,77.03,Low
