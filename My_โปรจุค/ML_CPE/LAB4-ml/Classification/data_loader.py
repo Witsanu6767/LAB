@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-CSV_PATH = Path(__file__).resolve().parent.parent / "Data-Set" / "dataset.csv"
+CSV_PATH = Path(__file__).resolve().parent.parent / "Data_Set" / "dataset.csv"
 
 TARGET = "Diet_Type"
 
