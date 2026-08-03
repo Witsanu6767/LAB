@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-CSV_PATH = Path(__file__).resolve().parent.parent / "data-animal" / "animal_dataset.csv"
+CSV_PATH = Path(__file__).resolve().parent.parent / "Data-Set" / "dataset.csv"
 
 TARGET = "Diet_Type"
 
@@ -21,7 +21,6 @@ NUMERIC_FEATURES = [
     "Weight (kg)",
     "Height (cm)",
     "Speed (km/h)",
-    "Endangered_Level (1-5)",
 ]
 
 # config feature is text features that need to be converted to numbers
