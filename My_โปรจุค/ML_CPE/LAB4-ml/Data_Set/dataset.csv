@@ -1,4 +1,4 @@
-Car_ID,Brand,Model,Type_car,Age_Years,Weight_kg,Height_cm,Price_THB,Primary_Region,Top_Speed_kmh
+Car_ID,Brand,Model,Type_car,Age (Years),Weight (kg),Height (cm),Price_THB,Primary_Region,Top_Speed (kmh)
 CAR_1,Toyota,Corolla,Sedan,11,1202,143,2014414,Japan,208
 CAR_2,Toyota,Camry,Sedan,10,1171,152,1703462,Japan,200
 CAR_3,Toyota,RAV4,SUV,8,2266,187,2136074,Japan,180
