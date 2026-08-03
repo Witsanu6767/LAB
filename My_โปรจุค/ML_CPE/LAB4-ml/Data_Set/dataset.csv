@@ -1,50 +1,50 @@
-Car_ID,Type_car,Average_EXP (Years),Weight (kg),Height (cm),Price_current,Primary_Region,Speed (km/h)
-CAR_1,Giraffe,59,865.12,232.66,Carnivore,Australia,25.03
-CAR_2,Giraffe,67,452.46,359.8,Herbivore,Europe,27.97
-CAR_3,Panda,54,17.65,393.57,Omnivore,Antarctica,77.03
-CAR_4,Deer,32,2990.88,348.27,Herbivore,Antarctica,52.95
-CAR_5,Elephant,71,1398.41,238.9,Carnivore,South America,52.19
-CAR_6,Lion,79,417.37,114.6,Carnivore,North America,19.72
-CAR_7,Cat,33,2829.19,306.21,Herbivore,Europe,64.47
-CAR_8,Horse,79,300.43,154,Herbivore,Australia,71.36
-CAR_9,Panda,40,2555.19,368.77,Omnivore,Australia,9.79
-CAR_10,Panda,37,336.63,151.99,Omnivore,Australia,43.87
-CAR_11,Giraffe,11,4274.29,280.06,Omnivore,Australia,40.48
-CAR_12,Dog,75,280.21,60.18,Carnivore,Antarctica,85.32
-CAR_13,Lion,45,3402.38,178.4,Carnivore,South America,30.66
-CAR_14,Horse,24,385.63,151.22,Herbivore,Africa,51.04
-CAR_15,Dog,52,2583.33,24.25,Herbivore,Antarctica,85.73
-CAR_16,Horse,37,409.03,31.69,Herbivore,North America,15.03
-CAR_17,Tiger,60,4512.69,394.91,Herbivore,Europe,78.65
-CAR_18,Dog,7,1581.24,291.55,Herbivore,North America,82.52
-CAR_19,Horse,76,1739.92,341.49,Omnivore,Antarctica,38.62
-CAR_20,Tiger,40,417.45,204.99,Omnivore,South America,71.08
-CAR_21,Panda,10,3855.88,171.58,Herbivore,South America,25.61
-CAR_22,Giraffe,52,399.34,264.8,Omnivore,Africa,19.37
-CAR_23,Lion,59,3834.11,219.45,Herbivore,Africa,11.26
-CAR_24,Giraffe,34,1792.83,121.37,Herbivore,Antarctica,43.37
-CAR_25,Elephant,30,3791.64,206.78,Carnivore,Africa,18.73
-CAR_26,Elephant,38,1786.91,396.66,Carnivore,Antarctica,67.5
-CAR_27,Tiger,50,759.11,46.16,Omnivore,Antarctica,18.94
-CAR_28,Horse,67,3112.38,263.27,Herbivore,Africa,97.05
-CAR_29,Panda,17,889.46,271.94,Herbivore,South America,33.36
-CAR_30,Dog,66,4939.14,46.36,Omnivore,Asia,23.79
-CAR_31,Cat,56,1724.03,358.28,Omnivore,North America,96.73
-CAR_32,Elephant,72,3974.51,123.54,Omnivore,North America,42.6
-CAR_33,Cat,16,2905.2,235.96,Carnivore,Africa,17.57
-CAR_34,Lion,67,3402,144.45,Omnivore,Australia,47.69
-CAR_35,Panda,38,858.87,98.35,Carnivore,Australia,59.89
-CAR_36,Dog,79,3865.57,31.92,Herbivore,Antarctica,20.47
-CAR_37,Lion,32,976.93,203.25,Herbivore,Europe,9.38
-CAR_38,Horse,15,158.41,203.81,Herbivore,Africa,60.14
-CAR_39,Elephant,21,4144.08,326.99,Carnivore,South America,22.24
-CAR_40,Deer,59,2408.24,179.72,Herbivore,Europe,85.02
-CAR_41,Giraffe,19,3248.81,293.35,Omnivore,Asia,53.39
-CAR_42,Panda,42,573.38,156.8,Omnivore,Europe,97.09
-CAR_43,Kangaroo,51,1647.58,94.58,Carnivore,Africa,11.96
-CAR_44,Horse,59,1648.23,192.53,Omnivore,Europe,77.92
-CAR_45,Dog,77,732.07,37.86,Omnivore,Africa,7.08
-CAR_46,Cat,66,3550.44,211.39,Carnivore,Africa,18.51
-CAR_47,Cat,14,106.3,110.68,Herbivore,Africa,73.96
-CAR_48,Panda,60,3925.77,339.35,Omnivore,Asia,66.78
-CAR_49,Panda,51,4921.1,343.95,Omnivore,South America,27.54
+Car_ID,Brand,Model,Type_car,Age_Years,Weight_kg,Height_cm,Price_THB,Primary_Region,Top_Speed_kmh
+CAR_1,Toyota,Corolla,Sedan,11,1202,143,2014414,Japan,208
+CAR_2,Toyota,Camry,Sedan,10,1171,152,1703462,Japan,200
+CAR_3,Toyota,RAV4,SUV,8,2266,187,2136074,Japan,180
+CAR_4,Honda,Civic,Sedan,3,1472,143,878167,Japan,219
+CAR_5,Honda,CR-V,SUV,12,2461,185,2370455,Japan,171
+CAR_6,Honda,HR-V,Crossover,12,1513,145,1391743,Japan,181
+CAR_7,Nissan,Almera,Sedan,6,1376,140,1996025,Japan,191
+CAR_8,Nissan,Kicks,Crossover,11,1352,151,1517040,Japan,204
+CAR_9,Mazda,Mazda 3,Sedan,12,1158,154,1798079,Japan,221
+CAR_10,Mazda,CX-5,SUV,14,2499,180,1065725,Japan,184
+CAR_11,Isuzu,D-Max,Pickup,8,2109,178,3978370,Japan,217
+CAR_12,Ford,Ranger,Pickup,10,2303,172,3937332,USA,182
+CAR_13,Ford,Everest,SUV,3,1960,188,3825852,USA,177
+CAR_14,Ford,Mustang,Sports Car,12,1530,131,24844391,USA,298
+CAR_15,BMW,Series 3,Sedan,6,1121,153,1533036,Germany,207
+CAR_16,BMW,Series 5,Sedan,2,1188,141,1234909,Germany,195
+CAR_17,BMW,X3,SUV,8,1930,174,3835702,Germany,175
+CAR_18,Mercedes-Benz,C-Class,Sedan,12,1496,151,1282133,Germany,181
+CAR_19,Mercedes-Benz,E-Class,Sedan,1,1622,147,1577903,Germany,224
+CAR_20,Mercedes-Benz,GLC,SUV,12,2285,188,2724492,Germany,188
+CAR_21,Audi,A4,Sedan,5,1157,143,1551672,Germany,187
+CAR_22,Audi,Q5,SUV,4,2280,172,1121118,Germany,191
+CAR_23,Porsche,911,Sports Car,8,1503,130,15456455,Germany,256
+CAR_24,Porsche,Cayenne,SUV,1,2238,187,3145455,Germany,212
+CAR_25,Tesla,Model 3,EV Sedan,4,1230,147,1032398,USA,201
+CAR_26,Tesla,Model Y,EV SUV,2,1252,152,1925180,USA,223
+CAR_27,Hyundai,Ioniq 5,EV Crossover,12,1493,141,1804928,South Korea,208
+CAR_28,Kia,EV6,EV Crossover,6,1541,141,749718,South Korea,189
+CAR_29,BYD,Atto 3,EV SUV,13,2439,183,1651870,China,195
+CAR_30,BYD,Dolphin,EV Hatchback,5,1184,142,1663459,China,192
+CAR_31,BYD,Seal,EV Sedan,10,1314,147,1409241,China,203
+CAR_32,MG,ZS,SUV,3,1949,165,2296065,China,192
+CAR_33,MG,MG4,EV Hatchback,7,1260,154,1276228,China,227
+CAR_34,Volvo,XC60,SUV,11,2187,175,3486339,Sweden,179
+CAR_35,Volvo,XC90,SUV,11,2138,183,4055272,Sweden,171
+CAR_36,Subaru,Forester,SUV,4,1970,183,2772591,Japan,206
+CAR_37,Subaru,BRZ,Sports Car,8,1681,130,22953282,Japan,241
+CAR_38,Lexus,ES,Sedan,8,1399,141,1782298,Japan,202
+CAR_39,Lexus,RX,SUV,3,2353,171,4071383,Japan,211
+CAR_40,Suzuki,Swift,Hatchback,1,1232,154,1386762,Japan,219
+CAR_41,Suzuki,Jimny,Off-road SUV,6,1921,171,1183188,Japan,182
+CAR_42,Chevrolet,Corvette,Sports Car,4,1529,126,14915632,USA,288
+CAR_43,Ferrari,Roma,Supercar,11,1535,130,12766326,Italy,264
+CAR_44,Lamborghini,Urus,Supercar SUV,13,2002,176,3469036,Italy,305
+CAR_45,Volkswagen,Golf,Hatchback,2,1121,141,1894371,Germany,191
+CAR_46,Volkswagen,Tiguan,SUV,1,2289,183,1652750,Germany,204
+CAR_47,Mini,Cooper,Hatchback,12,1217,140,897850,UK,191
+CAR_48,Land Rover,Defender,Off-road SUV,12,2166,177,1529433,UK,180
+CAR_49,GWM,Haval H6,SUV,14,2491,188,3826233,China,194
