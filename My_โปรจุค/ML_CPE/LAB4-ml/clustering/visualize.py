@@ -1,21 +1,12 @@
-
-
-
-
-
 ## Create plots without displaying them (for servers without GUI) 
-
 
 import matplotlib
 matplotlib.use("Agg")     
 
 import matplotlib.pyplot as plt
 
-
 # ---------------------------------------------------------------------------
 def plot_elbow(k_values, inertias, out_path):
-
-
 
     plt.figure(figsize=(7, 4.5))
     plt.plot(k_values, inertias, "o-")
@@ -26,7 +17,6 @@ def plot_elbow(k_values, inertias, out_path):
     plt.tight_layout()
     plt.savefig(out_path, dpi=120)
     plt.close()
-
 
 # ---------------------------------------------------------------------------
 def plot_clusters(X_raw, labels, out_path, x_name="Weight (kg)", y_name="Height (cm)"):
