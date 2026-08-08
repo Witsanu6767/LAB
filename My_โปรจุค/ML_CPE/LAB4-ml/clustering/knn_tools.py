@@ -1,14 +1,6 @@
-
-
-
-
-
 ## KNN with mean function (for clustering) 
 
-
 import numpy as np
-import tensorflow as tf
-
 
 class KNNClusterAssigner:
 
@@ -18,26 +10,26 @@ class KNNClusterAssigner:
     # -----------------------------------------------------------------
     def fit(self, X, cluster_labels):
 
-        self.X = tf.constant(X, dtype=tf.float32)
-        self.labels = tf.constant(cluster_labels, dtype=tf.int32)
+        self.X = np.array(X, dtype=np.float32)
+        self.labels = np.array(cluster_labels, dtype=np.int32)
         self.n_clusters = int(cluster_labels.max()) + 1
         return self
 
     # -----------------------------------------------------------------
     def predict(self, X_new):
   
-        X_new = tf.constant(X_new, dtype=tf.float32)
+        X_new = np.array(X_new, dtype=np.float32)
 
-        # 1) วัดระยะทางจากจุดใหม่ ไปยังทุกจุดที่รู้กลุ่มแล้ว
+        # 1) Calculate Euclidean distance from new points to all training points
         diff = X_new[:, None, :] - self.X[None, :, :]
-        dist = tf.sqrt(tf.reduce_sum(tf.square(diff), axis=2))
+        dist = np.sqrt(np.sum(np.square(diff), axis=2))
 
-        # 2) เลือกเพื่อนบ้านที่ใกล้ที่สุด k ตัว (ใส่ลบเพื่อให้ top_k หาค่าน้อยสุด)
-        _, idx = tf.math.top_k(-dist, k=self.k)
-        neighbor_labels = tf.gather(self.labels, idx)
+        # 2) Select the k nearest neighbors (smallest distances)
+        _, idx = np.argpartition(-dist, kth=self.k, axis=1)
+        neighbor_labels = self.labels[idx]
 
-        # 3) โหวต -> กลุ่มที่ได้เสียงมากที่สุดชนะ
-        onehot = tf.one_hot(neighbor_labels, depth=self.n_clusters)
-        votes = tf.reduce_sum(onehot, axis=1)
+        # 3) Majority voting: Count cluster frequency among k neighbors
+        onehot = np.eye(self.n_clusters)[neighbor_labels]
+        votes = np.sum(onehot, axis=1)
 
-        return tf.argmax(votes, axis=1).numpy().astype("int32")
+        return np.argmax(votes, axis=1).astype("int32")
