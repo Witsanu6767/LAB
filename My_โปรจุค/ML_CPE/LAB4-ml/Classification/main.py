@@ -1,9 +1,5 @@
-
-
-
-
 import os
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"   
+os.environ["NP_CPP_MIN_LOG_LEVEL"] = "3"   
 
 from pathlib import Path
 
@@ -12,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 import data_loader
 import evaluate
-from knn_tf import TFKNNClassifier
+from ML.Lab4.Classification.knn_np import NumpyKNNClassifier
 
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
 
@@ -43,13 +39,14 @@ def main():
 
     title("STEP 2 : search k for finding the best value")
 
-    # the result from validation is not used for testing
-    # baseline test to keep in finel ไม่งั้นจะเหมือน "เห็นข้อสอบก่อน"
-    k_values = [1, 2, 3, 5, 10, 11, 15, 21, 30]
+    # Filter k_values so k cannot exceed the number of training samples
+    max_k = len(y_train)
+    candidate_ks = [1, 2, 3, 5, 7, 9, 11, 15]
+    k_values = [k for k in candidate_ks if k <= max_k]
     scores = []
 
     for k in k_values:
-        model = TFKNNClassifier(k=k)
+        model = NumpyKNNClassifier(k=k)
         model.fit(X_train, y_train)
         acc = model.score(X_val, y_val)
         scores.append(acc)
@@ -62,7 +59,7 @@ def main():
 
     title(f"STEP 3 : Treaning model with k = {best_k} and evaluate on test set")
 
-    model = TFKNNClassifier(k=best_k)
+    model = NumpyKNNClassifier(k=best_k)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
@@ -89,7 +86,7 @@ def main():
 
     title("STEP 5 : Is our model better than guessing? ")
 
-    # Baseline = predict class ที่พบบ่อย
+    # Baseline = predict the majority class in the training set
     # if model win : baseline is not feature is helpful
     majority = np.bincount(y_train).argmax()
     baseline = float(np.mean(y_test == majority))
