@@ -11,57 +11,75 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-CSV_PATH = Path(__file__).resolve().parent.parent / "Data-Set" / "dataset.csv"
+CSV_PATH = Path(__file__).resolve().parent.parent / "Data_Set" / "dataset.csv"
 
-TARGET = "Diet_Type"
+TARGET = "Type_car"
 
-# config feature is numeric features that are already numbers
+# Numeric features configuration
 NUMERIC_FEATURES = [
     "Age (Years)",
     "Weight (kg)",
     "Height (cm)",
-    "Top_Speed (km/h)",
+    "Top_Speed (kmh)",
 ]
 
-# config feature is text features that need to be converted to numbers
+# Categorical text features mapping
 TEXT_FEATURES = {
-    "Intelligence_Level": {"Low": 0, "Medium": 1, "High": 2},
-    "Domesticated": {"No": 0, "Yes": 1},
-    "Nocturnal": {"No": 0, "Yes": 1},
+    "Primary_Region": {
+        "Japan": 0,
+        "USA": 1,
+        "Germany": 2,
+        "China": 3,
+        "Sweden": 4,
+        "South Korea": 5,
+        "Italy": 6,
+        "UK": 7,
+    },
 }
-
-
-
-
-
 
 # ---------------------------------------------------------------------------
 def load_data(test_size=0.2, seed=42):
 
-    # step 1 : read CSV
+    # Step 1: Read CSV and drop missing values
     df = pd.read_csv(CSV_PATH)
     df = df.dropna()            
 
-    # step 2 : convert text to number
-    X = df[NUMERIC_FEATURES].copy()
+    # Step 2: Extract features and convert text to numbers
+    all_feature_cols = NUMERIC_FEATURES + list(TEXT_FEATURES.keys())
+    X_df = df[all_feature_cols].copy()
+
     for col, mapping in TEXT_FEATURES.items():
-        X[col] = df[col].map(mapping)      # เช่น "High" -> 2
+        X_df[col] = df[col].map(mapping)
 
-    # convert result (target) to number : Carnivore->0, Herbivore->1, Omnivore->2
+    # Encode target variable (e.g., SUV -> 1)
     class_names = sorted(df[TARGET].unique())
-    y = df[TARGET].map({name: i for i, name in enumerate(class_names)})
+    label_mapping = {name: i for i, name in enumerate(class_names)}
+    y_series = df[TARGET].map(label_mapping)
 
-    X = X.to_numpy(dtype="float32")
-    y = y.to_numpy(dtype="int32")
+    # Filter out classes with fewer than 3 samples to allow 3-way stratified splitting
+    class_counts = y_series.value_counts()
+    valid_classes = class_counts[class_counts >= 3].index
+    
+    mask = y_series.isin(valid_classes)
+    X_df = X_df[mask]
+    y_series = y_series[mask]
 
-    # step 3 : split data เป็น train 60 / validation 20 / test 20
+    # Update class_names to include only remaining valid classes
+    class_names = [name for name in class_names if label_mapping[name] in valid_classes]
+
+    X = X_df.to_numpy(dtype="float32")
+    y = y_series.to_numpy(dtype="int32")
+
+    # Step 3: Stratified split into Train (60%) / Validation (20%) / Test (20%)
     X_temp, X_test, y_temp, y_test = train_test_split(
-        X, y, test_size=test_size, random_state=seed, stratify=y)
+        X, y, test_size=test_size, random_state=seed, stratify=y
+    )
 
     X_train, X_val, y_train, y_val = train_test_split(
-        X_temp, y_temp, test_size=0.25, random_state=seed, stratify=y_temp)
+        X_temp, y_temp, test_size=0.25, random_state=seed, stratify=y_temp
+    )  # 0.25 x 0.8 = 0.2
 
-    # step 4 : Scaling 
+    # Step 4: Feature Scaling using StandardScaler
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train).astype("float32")
     X_val = scaler.transform(X_val).astype("float32")
@@ -72,15 +90,14 @@ def load_data(test_size=0.2, seed=42):
         "X_val": X_val, "y_val": y_val,
         "X_test": X_test, "y_test": y_test,
         "class_names": class_names,
-        "feature_names": NUMERIC_FEATURES + list(TEXT_FEATURES),
-        "n_rows": len(df),
+        "feature_names": all_feature_cols,
+        "n_rows": len(X),
     }
-
 
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     data = load_data()
-    print("train :", data["X_train"].shape)
-    print("val   :", data["X_val"].shape)
-    print("test  :", data["X_test"].shape)
-    print("คลาส  :", data["class_names"])
+    print("Train shape :", data["X_train"].shape)
+    print("Val shape   :", data["X_val"].shape)
+    print("Test shape  :", data["X_test"].shape)
+    print("Classes     :", data["class_names"])
