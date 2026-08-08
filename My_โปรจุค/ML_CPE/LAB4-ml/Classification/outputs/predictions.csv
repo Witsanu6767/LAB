@@ -1,1 +1,8 @@
-
+true_label,predicted_label,correct
+Hatchback,SUV,False
+Sedan,Sedan,True
+SUV,SUV,True
+Sports Car,Sports Car,True
+SUV,SUV,True
+SUV,SUV,True
+Sedan,Sedan,True
