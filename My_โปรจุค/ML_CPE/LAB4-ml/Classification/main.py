@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 import data_loader
 import evaluate
-from ML.Lab4.Classification.knn_np import NumpyKNNClassifier
+from knn_tf import NumpyKNNClassifier
 
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
 
@@ -91,7 +91,10 @@ def main():
     majority = np.bincount(y_train).argmax()
     baseline = float(np.mean(y_test == majority))
 
-    print(f"Baseline (predict '{class_names[majority]}' every time) : {baseline:.4f}")
+    # แก้การดึงชื่อคลาสให้ปลอดภัยจาก IndexError
+    majority_class_name = class_names[majority] if majority < len(class_names) else f"Class_{majority}"
+
+    print(f"Baseline (predict '{majority_class_name}' every time) : {baseline:.4f}")
     print(f"KNN: our model                                : {accuracy:.4f}")
 
     if accuracy <= baseline:
