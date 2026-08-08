@@ -25,8 +25,8 @@ class KNNClusterAssigner:
         dist = np.sqrt(np.sum(np.square(diff), axis=2))
 
         # 2) Select the k nearest neighbors (smallest distances)
-        _, idx = np.argpartition(-dist, kth=self.k, axis=1)
-        neighbor_labels = self.labels[idx]
+        top_k_idx = np.argpartition(dist, kth=self.k - 1, axis=1)[:, :self.k]
+        neighbor_labels = self.labels[top_k_idx]
 
         # 3) Majority voting: Count cluster frequency among k neighbors
         onehot = np.eye(self.n_clusters)[neighbor_labels]
