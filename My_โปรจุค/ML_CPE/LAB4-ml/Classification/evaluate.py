@@ -1,26 +1,10 @@
 ##
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import matplotlib
 matplotlib.use("Agg")    
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix
-
 
 # ---------------------------------------------------------------------------
 def plot_k_curve(k_values, scores, out_path):
@@ -34,7 +18,6 @@ def plot_k_curve(k_values, scores, out_path):
     plt.tight_layout()
     plt.savefig(out_path, dpi=120)
     plt.close()
-
 
 # ---------------------------------------------------------------------------
 def plot_confusion_matrix(y_true, y_pred, class_names, out_path):
@@ -59,13 +42,11 @@ def plot_confusion_matrix(y_true, y_pred, class_names, out_path):
     plt.close()
     return cm
 
-
 # ---------------------------------------------------------------------------
 def print_report(y_true, y_pred, class_names):
     """show (precision / recall / f1)"""
     print(classification_report(y_true, y_pred,
                                 target_names=class_names, zero_division=0))
-
 
 # ---------------------------------------------------------------------------
 def save_predictions(y_true, y_pred, class_names, out_path):
