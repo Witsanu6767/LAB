@@ -42,8 +42,8 @@ def main():
     df = data["df"]
     features = data["features"]
 
-    print(f"size data : {X.shape[0]} แถว x {X.shape[1]} feature")
-    print("feature is clustering :")
+    print(f"size data : {X.shape[0]} rows x {X.shape[1]} features")
+    print("features used for clustering :")
     for f in features:
         print(f"   - {f}")
 
@@ -109,7 +109,7 @@ def main():
     knn_pred = assigner.predict(X_new)
 
     accuracy = float(np.mean(knn_pred == labels_new))
-    print(f"Number of 'new cars' : {len(X_new)} คัน")
+    print(f"Number of 'new cars' : {len(X_new)}")
     print(f"KNN cluster assignment matching accuracy : {accuracy * 100:.1f} %")
     print("Well-separated clusters give better KNN classification.")
     print("Use KNN for new data without rerunning K-Means.")
