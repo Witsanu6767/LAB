@@ -20,7 +20,7 @@ MAX_PER_CLASS = 3000   # None = use all images (very slow)
 def main():
 
     print("--" * 30)
-    print("SVM Image Recognition: Cat vs Dog")
+    print("SVM Image Recognition: Alien vs Predator")
     print("--" * 30)
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
