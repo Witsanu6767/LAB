@@ -1,4 +1,4 @@
-#👽 SVM Image Recognition: Alien vs Predator 🛸
+# 👽 SVM Image Recognition: Alien vs Predator 🛸
 
 An image classification system built to distinguish between **Alien** and **Predator** using a **Support Vector Machine (SVM)** model combined with **Principal Component Analysis (PCA)** for dimensionality reduction. Developed in Python using `scikit-learn`.
 
