@@ -1,4 +1,3 @@
-# แยกLabย่อยออกจากกันเดี๋ยวเยอะเกิน
 # 🏴‍☠️ One Piece Bounty Prediction Model
 
 โปรเจกต์นี้เป็นการนำข้อมูลตัวละครจากการ์ตูน **One Piece** มาสร้างโมเดล Machine Learning ด้วยวิธี **Linear Regression** เพื่อทำนาย **ค่าหัว (Bounty)** ของตัวละครจากปัจจัยต่างๆ เช่น อายุ (Age), ส่วนสูง (Height), และการกินผลปีศาจ (Devil Fruit)
