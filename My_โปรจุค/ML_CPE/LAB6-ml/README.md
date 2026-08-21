@@ -1,6 +1,6 @@
 # ML-06: Neural Network (NN) Image Recognition
 
-An end-to-end image recognition pipeline (Alien vs Predator) using a **Multi-Layer Perceptron (MLP)** / **Neural Network (NN)** built with a modular Python structure.
+An end-to-end image recognition pipeline using a **Multi-Layer Perceptron (MLP)** / **Neural Network (NN)** built with a modular Python structure.
 
 ---
 
@@ -13,15 +13,42 @@ This repository implements a complete Machine Learning pipeline for Image Classi
 ## 📁 Project Structure
 
 ```text
-.
-├── data_loader.py       # Automatically loads images, detects classes, and resizes inputs
-├── preprocessing.py     # Handles color conversions (BGR to RGB) and formats features as uint8
-├── split_data.py        # Splits data into Train / Validation / Test sets
-├── nn_model.py          # Defines the MLP architecture, training, and inference functions
-├── evaluate.py          # Calculates accuracy metrics, classification reports, and saves plots
-├── main.py              # Main driver script executing Steps 1 to 6
-├── test_nn.py           # Inference test script that predicts on random samples with confidence scores
-└── outputs/             # Directory containing saved models (.keras), arrays (.npy), and plots
+ML-06-NN/
+│
+├── AlienImages/                      # Dataset directory containing class folders
+│   ├── Alien/
+│   │   ├── 0.jpg
+│   │   ├── 1.jpg
+│   │   └── ...
+│   │
+│   └── Predator/
+│       ├── 0.jpg
+│       ├── 1.jpg
+│       └── ...
+│
+└── classification/
+    ├── main.py                     # Main driver script executing Steps 1 to 6
+    ├── data_loader.py              # Load images and skip corrupted files
+    ├── preprocessing.py            # Resize images and convert BGR to RGB
+    ├── split_data.py               # Split data into training, validation, and test sets
+    ├── nn_model.py                 # Build, train, save, and predict with the Neural Network
+    ├── evaluate.py                 # Accuracy, classification report, confusion matrix, and training plots
+    ├── test_nn.py                  # Test the trained model using four random images
+    └── outputs/                    # Folder storing generated feature arrays, model weights, and plots
+        ├── features.npy
+        ├── labels.npy
+        ├── classes.json
+        ├── X_train.npy
+        ├── X_val.npy
+        ├── X_test.npy
+        ├── y_train.npy
+        ├── y_val.npy
+        ├── y_test.npy
+        ├── nn_model.keras
+        ├── history.json
+        ├── confusion_matrix.png
+        ├── training_history.png
+        └── prediction_sample.png
 ```
 
 ---
@@ -31,7 +58,7 @@ This repository implements a complete Machine Learning pipeline for Image Classi
 The entire workflow is orchestrated by `main.py` across 6 key steps:
 
 ### 1. Data Loading (`data_loader.py`)
-- Automatically detects class labels from subdirectories (`Alien`, `Predator`).
+- Automatically detects class labels from subdirectories.
 - Resizes all incoming images to a unified $100 \times 100$ pixel resolution.
 - Saves `labels.npy` and `classes.json` inside the `outputs/` folder.
 
@@ -79,6 +106,7 @@ pip install numpy opencv-python matplotlib scikit-learn tensorflow
 
 ### 2. Execute Full Pipeline (Train & Evaluate)
 ```bash
+cd classification
 python main.py
 ```
 
