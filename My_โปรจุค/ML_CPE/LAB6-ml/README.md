@@ -1,16 +1,12 @@
-# Image Classification using Fully-Connected Neural Network (MLP)
+# ML-06: Neural Network (NN) Image Recognition
 
-This repository contains an end-to-end image classification pipeline built with **TensorFlow / Keras**. The project utilizes a **Multilayer Perceptron (MLP)** architecture with memory-optimized data handling, automated image preprocessing via **OpenCV**, and comprehensive model evaluation using **scikit-learn** and **Matplotlib**.
+An end-to-end image recognition pipeline (Alien vs Predator) using a **Multi-Layer Perceptron (MLP)** / **Neural Network (NN)** built with a modular Python structure.
 
 ---
 
-## 📌 Key Features
+## 📌 Project Overview
 
-* **Automatic Class Detection:** Automatically infers class labels directly from dataset subdirectories.
-* **Memory Optimization:** Resizes images on-the-fly during loading and keeps image arrays as `uint8`. Normalization is embedded inside the network using a `Rescaling(1.0/255)` layer to conserve RAM.
-* **Dynamic Model Architecture:** Automatically configures the output layer and loss function based on the detected number of classes (binary vs. multiclass).
-* **Smart Training Callbacks:** Implements `EarlyStopping` to prevent overfitting and `ReduceLROnPlateau` to dynamically adjust the learning rate during training.
-* **Comprehensive Evaluation:** Automatically generates accuracy/loss curves, a confusion matrix visualization, and a 2x2 prediction grid on random test samples.
+This repository implements a complete Machine Learning pipeline for Image Classification using a Fully-Connected Neural Network (MLP). It covers everything from raw image loading and preprocessing to dataset splitting, model training with Keras/TensorFlow, evaluation, and sample inference.
 
 ---
 
@@ -18,87 +14,89 @@ This repository contains an end-to-end image classification pipeline built with 
 
 ```text
 .
-├── AlienImages/             # Raw dataset directory (organized by subdirectories)
-├── main.py                  # Main execution pipeline (Load -> Train -> Evaluate)
-├── data_loader.py           # Loads and resizes images from disk
-├── preprocessing.py         # Color space conversion (BGR to RGB) and array formatting
-├── split_data.py            # Stratified train / validation / test dataset splitter
-├── nn_model.py              # MLP model architecture, training loop, and inference
-├── evaluate.py              # Generates classification reports, confusion matrix, and training curves
-├── test_nn.py               # Visualizes predictions on 4 random test images in a 2x2 grid
-└── outputs/                 # Directory where models, datasets (.npy), and evaluation plots are saved
+├── data_loader.py       # Automatically loads images, detects classes, and resizes inputs
+├── preprocessing.py     # Handles color conversions (BGR to RGB) and formats features as uint8
+├── split_data.py        # Splits data into Train / Validation / Test sets
+├── nn_model.py          # Defines the MLP architecture, training, and inference functions
+├── evaluate.py          # Calculates accuracy metrics, classification reports, and saves plots
+├── main.py              # Main driver script executing Steps 1 to 6
+├── test_nn.py           # Inference test script that predicts on random samples with confidence scores
+└── outputs/             # Directory containing saved models (.keras), arrays (.npy), and plots
 ```
 
 ---
 
-## 🛠️ Model Architecture
+## ⚙️ Pipeline Workflow
 
-The core model is built using `keras.Sequential` with the following structure:
+The entire workflow is orchestrated by `main.py` across 6 key steps:
 
-1. **`Rescaling(1/255)`**: Embeds 0–1 normalization directly into the model.
-2. **`Flatten`**: Flattens input image tensors into 1D feature vectors.
-3. **`Dense(256)` + `BatchNormalization` + `Dropout(0.4)`**
-4. **`Dense(128)` + `BatchNormalization` + `Dropout(0.4)`**
-5. **`Dense(64)` + `Dropout(0.3)`**
-6. **`Output Layer`**:
-   * **Binary (2 classes):** `Dense(1, activation='sigmoid')` paired with `binary_crossentropy` loss.
-   * **Multiclass (>2 classes):** `Dense(num_classes, activation='softmax')` paired with `sparse_categorical_crossentropy` loss.
+### 1. Data Loading (`data_loader.py`)
+- Automatically detects class labels from subdirectories (`Alien`, `Predator`).
+- Resizes all incoming images to a unified $100 \times 100$ pixel resolution.
+- Saves `labels.npy` and `classes.json` inside the `outputs/` folder.
+
+### 2. Preprocessing (`preprocessing.py`)
+- Converts OpenCV's default **BGR** color space to **RGB** for proper visualization and analysis.
+- Retains data in `uint8` format for memory efficiency (deferring the $0-255$ normalization to an in-model layer).
+
+### 3. Dataset Splitting (`split_data.py`)
+- Employs a **Stratified Split** to preserve target class distribution across splits.
+- Data distribution ratio:
+  - **Test Set**: 20%
+  - **Validation Set**: 10% (carved from training data to monitor overfitting)
+  - **Training Set**: 70%
+
+### 4. Neural Network Training (`nn_model.py`)
+- **Model Architecture (MLP)**:
+  - `Rescaling(1.0 / 255)`: Rescales pixel values from $0-255$ to $0-1$ inside the network.
+  - `Flatten`: Flattens 2D images ($100 \times 100 \times 3$) into a 1D vector (30,000 features).
+  - `Dense Layers`: Hidden layers of size 256, 128, and 64 equipped with `BatchNormalization` and `Dropout` (0.3 - 0.4) to combat overfitting.
+  - `Output Layer`: Single-node Dense layer using a `Sigmoid` activation for binary classification (trained via `binary_crossentropy` loss).
+- **Optimization & Callbacks**:
+  - **Adam Optimizer** ($lr = 10^{-3}$).
+  - `EarlyStopping`: Halts training when `val_loss` stops improving for 5 consecutive epochs, restoring the best weights.
+  - `ReduceLROnPlateau`: Dynamically reduces learning rate when progress plateaus.
+- Saves the trained model to `outputs/nn_model.keras`.
+
+### 5. Prediction (`nn_model.py`)
+- Runs inference on the test set (`X_test`).
+- Calculates output probabilities and maps them to binary class labels using a $0.5$ threshold.
+
+### 6. Evaluation (`evaluate.py`)
+- Calculates and logs **Accuracy**, **Classification Report** (Precision, Recall, F1-Score), and the **Confusion Matrix**.
+- Exports evaluation visual plots to `outputs/`:
+  - `confusion_matrix.png`: Visual representation of true vs predicted labels.
+  - `training_history.png`: Epoch-by-epoch loss and accuracy curves.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 How to Run
 
-### 1. Prerequisites
-
-Install the required Python dependencies:
-
+### 1. Install Dependencies
 ```bash
-pip install tensorflow opencv-python matplotlib scikit-learn numpy
+pip install numpy opencv-python matplotlib scikit-learn tensorflow
 ```
 
-### 2. Dataset Setup
-
-Organize your images inside the `AlienImages/` directory structured by class folders:
-
-```text
-AlienImages/
-├── Alien/
-│   ├── image1.jpg
-│   └── image2.jpg
-└── Predator/
-    ├── image1.jpg
-    └── image2.jpg
-```
-
-### 3. Training the Model
-
-Execute the primary pipeline script:
-
+### 2. Execute Full Pipeline (Train & Evaluate)
 ```bash
 python main.py
 ```
 
-Upon completion, all generated artifacts will be stored in the `outputs/` directory:
-* `nn_model.keras`: Saved trained Keras model
-* `training_history.png`: Accuracy and loss curves across training epochs
-* `confusion_matrix.png`: Confusion matrix plot
-* `history.json` & `.npy`: Dataset splits and metric history
-
-### 4. Testing & Inference
-
-To evaluate the trained model on 4 random images from the test set:
-
+### 3. Run Sample Inference Test
+Randomly selects 4 test images and produces visual predictions alongside percentage confidence scores:
 ```bash
 python test_nn.py
 ```
 
-The output grid with predictions and confidence scores will be saved to `outputs/prediction_sample.png`.
-
 ---
 
-## 📊 Evaluation & Outputs
+## 📊 Artifacts Generated in `outputs/`
 
-The training process outputs standard metrics to the console and generates visual charts:
-* **Classification Report:** Detailed breakdown of Precision, Recall, and F1-Score per class.
-* **Loss & Accuracy Plots:** Used to monitor training convergence and detect overfitting.
-* **Prediction Grid:** Displays random test samples labeled with predicted class, ground truth, and prediction confidence.
+After running the project, the following files will be produced:
+- **`nn_model.keras`**: Saved Keras model binary.
+- **`classes.json` / `labels.npy` / `features.npy`**: Metadata and extracted raw features.
+- **`X_train.npy`, `X_val.npy`, `X_test.npy`, `y_train.npy`, `y_val.npy`, `y_test.npy`**: Pre-split numpy arrays.
+- **`history.json`**: Full training history log.
+- **`confusion_matrix.png`**: Confusion matrix visualization.
+- **`training_history.png`**: Training vs Validation Accuracy and Loss graph.
+- **`prediction_sample.png`**: $2 \times 2$ grid plot showing sample predictions with confidence levels.
