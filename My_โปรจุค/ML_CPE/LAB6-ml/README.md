@@ -30,8 +30,11 @@ Running the pipeline generates and saves the following artifacts inside the `out
 
 * **Accuracy Scores**: Quantitative performance metrics evaluated on the test dataset.
 * **Confusion Matrix & Classification Report**: Detailed class-wise metrics saved as `outputs/confusion_matrix.png`.
+* <img width="750" height="750" alt="confusion_matrix" src="https://github.com/user-attachments/assets/d7e98a59-34ee-4cf1-9b8f-f178b9b07ba1" />
 * **Training History**: Accuracy and loss curves across epochs saved as `outputs/training_history.png`.
+* <img width="1650" height="600" alt="training_history" src="https://github.com/user-attachments/assets/165de932-724a-4cf2-b4be-41f3d5bf8635" />
 * **Prediction Samples**: A 2x2 grid displaying random test samples with true labels, predicted labels, and confidence levels, saved as `outputs/prediction_sample.png`.
+* <img width="1020" height="1200" alt="prediction_sample" src="https://github.com/user-attachments/assets/b98a8b95-d2d9-40e3-839c-2a7a0c6746f3" />
 
 ---
 
