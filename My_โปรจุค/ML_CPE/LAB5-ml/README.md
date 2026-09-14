@@ -88,4 +88,7 @@ After training, run this script to randomly sample test images and save an outpu
 ```bash
 python test_model.py
 ```
-<img width="750" height="750" alt="confusion_matrix" src="https://github.com/user-attachments/assets/8530fe3d-8609-46b6-a8d1-022adb51d0c9" />
+<p align="center">
+  <img width="350" alt="confusion_matrix" src="https://github.com/user-attachments/assets/8530fe3d-8609-46b6-a8d1-022adb51d0c9" />
+  <img width="480" alt="prediction_sample" src="https://github.com/user-attachments/assets/10071780-5a85-496f-8a25-3e05647eac48" />
+</p>
