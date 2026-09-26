@@ -1,27 +1,38 @@
 # 🕷️ CNN Image Classification: Spider vs Centipede 🐛
 
-ระบบจำแนกภาพถ่ายแมงมุม (Spider) และตะขาบ (Centipede) ด้วยเทคโนโลยี **Convolutional Neural Networks (CNN)** แบบ End-to-End Pipeline จัดโครงสร้างโปรเจกต์แบบเป็นสัดส่วน (Modular) รองรับ Data Augmentation, Regularization และระบบบันทึกผลการประเมินอัตโนมัติ
+ระบบประมวลผลและจำแนกภาพถ่ายแมงมุม (Spider) และตะขาบ (Centipede) ด้วยเทคโนโลยี **Convolutional Neural Networks (CNN)** ผ่านกระบวนการ End-to-End ตั้งแต่การดึงภาพ, การทำ Preprocessing, การแบ่งข้อมูลแบบ Stratified, การเทรนโมเดลด้วย TensorFlow/Keras พร้อมด้วย Callback ป้องกัน Overfitting ไปจนถึงการประเมินผลและการทดสอบภาพจริง
 
 ---
 
-## 📌 สถาปัตยกรรมระบบ (System Pipeline)
+## 📌 สถาปัตยกรรมระบบ (System Architecture)
 
-โปรเจกต์แบ่งขั้นตอนการประมวลผลออกเป็น 6 โมดูลหลักอย่างเป็นสัดส่วน:
+โครงสร้างการทำงานถูกแบ่งออกเป็น 6 ขั้นตอนหลักแบบเป็นสัดส่วน (Modular Structure):
 
-\`\`\`text
-[ Raw Images ] ──► (1) data_loader.py    : อ่านและปรับขนาดรูปภาพเริ่มต้น (INTER_AREA)
-               ──► (2) preprocessing.py  : แปลง BGR เป็น RGB & จัดรูป Array
-               ──► (3) split_data.py     : แบ่ง Train / Val / Test ด้วย Stratified Split
-               ──► (4) cnn_model.py      : สร้างและฝึกโมเดล CNN + Callbacks
-               ──► (5) evaluate.py       : ประเมินผล (Accuracy, Confusion Matrix, Curves)
-               ──► (6) test_cnn.py       : สุ่มทำนายภาพจาก Test Set แสดงผลลัพธ์
-\`\`\`
-
----
+```
+[ PetImages Data ] 
+       │
+       ▼
+ 1. data_loader.py       ──► โหลดรูปภาพ BGR, Resize เบื้องต้น
+       │
+       ▼
+ 2. preprocessing.py     ──► แปลงเป็น RGB & ปรับฟอร์แมต NumPy Array (uint8)
+       │
+       ▼
+ 3. split_data.py        ──► แบ่ง Train / Validation / Test ด้วย Stratified Sampling
+       │
+       ▼
+ 4. cnn_model.py         ──► เทรนด้วย CNN + Data Augmentation + Dropout + Callbacks
+       │
+       ▼
+ 5. evaluate.py          ──► คำนวณ Accuracy, Confusion Matrix & กราฟ Training History
+       │
+       ▼
+ 6. test_cnn.py          ──► สุ่มภาพจาก Test Set มาทดสอบทำ Prediction และแสดงผล
+```
 
 ## 📁 โครงสร้างโปรเจกต์ (Project Directory)
 
-\`\`\`text
+```
 lab7/
 ├── PetImages/                   # โฟลเดอร์ชุดข้อมูลภาพหลัก
 │   ├── Spider/                  # ภาพถ่ายแมงมุม
@@ -42,7 +53,7 @@ lab7/
 │       ├── confusion_matrix.png # แผนภูมิ Confusion Matrix
 │       └── prediction_sample.png# ตัวอย่างผลลัพธ์การสุ่มทดสอบทำนายภาพ
 └── README.md
-\`\`\`
+```
 
 ---
 
@@ -71,29 +82,29 @@ lab7/
 ## 🚀 ขั้นตอนการติดตั้งและการใช้งาน (Quick Start)
 
 ### 1. ติดตั้ง Dependencies
-\`\`\`bash
+```bash
 pip install tensorflow opencv-python scikit-learn matplotlib numpy
-\`\`\`
+```
 
 ### 2. การจัดวางไฟล์ชุดข้อมูล
 นำโฟลเดอร์ภาพวางไว้ในไดเรกทอรี \`PetImages/\` แยกตามชื่อคลาส:
-\`\`\`text
+```
 PetImages/
 ├── Spider/
 └── Centipede/
-\`\`\`
+```
 
 ### 3. รันกระบวนการเรียนรู้และประเมินผล (Execution)
 สั่งรัน pipeline หลักเพียงคำสั่งเดียว ระบบจะเริ่มทำงานตั้งแต่ขั้นตอนที่ 1 ถึง 6:
-\`\`\`bash
+```bash
 python classification/main.py
-\`\`\`
+```
 
 ### 4. ทดสอบสุ่มทำนายภาพ (Inference Test)
 ทดสอบนำโมเดลที่เทรนเสร็จแล้วมารันทำนายภาพสุ่มจากชุด Test Set:
-\`\`\`bash
+```bash
 python classification/test_cnn.py
-\`\`\`
+```
 
 ---
 
