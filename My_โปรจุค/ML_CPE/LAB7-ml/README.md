@@ -68,7 +68,7 @@ lab7/
   * **Block 2:** Conv2D (64 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
   * **Block 3:** Conv2D (128 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
 * **Classification Head:** 
-  * \`Flatten()\` + \`Dense(128, activation='relu')\`
+  * \Flatten()\ + \Dense(128, activation='relu')\
   * \`Dropout(0.4)\` ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
   * \`Dense(num_classes, activation='softmax')\` ประมวลผลความน่าจะเป็นของคลาส
 * **Optimization & Callbacks:**
