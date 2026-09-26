@@ -69,13 +69,13 @@ lab7/
   * **Block 3:** Conv2D (128 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
 * **Classification Head:** 
   * \Flatten()\ + \Dense(128, activation='relu')\
-  * \`Dropout(0.4)\` ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
-  * \`Dense(num_classes, activation='softmax')\` ประมวลผลความน่าจะเป็นของคลาส
+  * \Dropout(0.4)\ ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
+  * \Dense(num_classes, activation='softmax')\ ประมวลผลความน่าจะเป็นของคลาส
 * **Optimization & Callbacks:**
-  * Optimizer: **Adam** (Learning Rate = \`1e-4\`)
+  * Optimizer: **Adam** (Learning Rate = \1e-4\)
   * Loss Function: **Sparse Categorical Crossentropy**
-  * \`EarlyStopping\`: หยุดการฝึกเมื่อ Validation Loss ไม่ดีขึ้นต่อเนื่อง
-  * \`ReduceLROnPlateau\`: ปรับลด Learning Rate อัตโนมัติเมื่อค่า Loss เริ่มคงที่
+  * \EarlyStopping\: หยุดการฝึกเมื่อ Validation Loss ไม่ดีขึ้นต่อเนื่อง
+  * \ReduceLROnPlateau\: ปรับลด Learning Rate อัตโนมัติเมื่อค่า Loss เริ่มคงที่
 
 ---
 
@@ -87,7 +87,7 @@ pip install tensorflow opencv-python scikit-learn matplotlib numpy
 ```
 
 ### 2. การจัดวางไฟล์ชุดข้อมูล
-นำโฟลเดอร์ภาพวางไว้ในไดเรกทอรี \`PetImages/\` แยกตามชื่อคลาส:
+นำโฟลเดอร์ภาพวางไว้ในไดเรกทอรี \PetImages/\ แยกตามชื่อคลาส:
 ```
 PetImages/
 ├── Spider/
@@ -114,13 +114,8 @@ python classification/test_cnn.py
 
 | ไฟล์ผลลัพธ์ | ประเภท | คำอธิบาย |
 | :--- | :--- | :--- |
-| **\`training_history.png\`** | Image | กราฟแนวโน้ม Accuracy & Loss เปรียบเทียบระหว่าง Training และ Validation Sets |
-| **\`confusion_matrix.png\`** | Image | แสดงสถิติจำนวนภาพที่ทายถูกต้องและผิดพลาดของแต่ละคลาส |
-| **\`prediction_sample.png\`** | Image | ตัวอย่างผลการสุ่มทำนาย พร้อมแสดงระดับความมั่นใจ (%) และสถานะ Correct/Wrong |
-| **\`cnn_model.keras\`** | Model File | โมเดลสำเร็จรูปที่พร้อมนำไปปรับใช้ (Deploy) ร่วมกับระบบอื่น |
+| **\training_history.png\** | Image | กราฟแนวโน้ม Accuracy & Loss เปรียบเทียบระหว่าง Training และ Validation Sets |
+| **\confusion_matrix.png\** | Image | แสดงสถิติจำนวนภาพที่ทายถูกต้องและผิดพลาดของแต่ละคลาส |
+| **\prediction_sample.png\** | Image | ตัวอย่างผลการสุ่มทำนาย พร้อมแสดงระดับความมั่นใจ (%) และสถานะ Correct/Wrong |
+| **\cnn_model.keras\** | Model File | โมเดลสำเร็จรูปที่พร้อมนำไปปรับใช้ (Deploy) ร่วมกับระบบอื่น |
 '''
-
-with open('README.md', 'w', encoding='utf-8') as f:
-    f.write(content)
-print('สร้างไฟล์ README.md ฉบับปรับปรุงใหม่เรียบร้อยแล้ว!')
-"
