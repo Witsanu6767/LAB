@@ -1,121 +1,122 @@
 # 🕷️ CNN Image Classification: Spider vs Centipede 🐛
 
-ระบบประมวลผลและจำแนกภาพถ่ายแมงมุม (Spider) และตะขาบ (Centipede) ด้วยเทคโนโลยี **Convolutional Neural Networks (CNN)** ผ่านกระบวนการ End-to-End ตั้งแต่การดึงภาพ, การทำ Preprocessing, การแบ่งข้อมูลแบบ Stratified, การเทรนโมเดลด้วย TensorFlow/Keras พร้อมด้วย Callback ป้องกัน Overfitting ไปจนถึงการประเมินผลและการทดสอบภาพจริง
+An end-to-end Computer Vision pipeline to classify image data of **Spiders** and **Centipedes** using **Convolutional Neural Networks (CNN)** built with TensorFlow/Keras. The project covers data loading, preprocessing, stratified dataset splitting, model training with anti-overfitting callbacks, evaluation, and inference testing on real samples.
 
 ---
 
-## 📌 สถาปัตยกรรมระบบ (System Architecture)
+## 📌 System Architecture
 
-โครงสร้างการทำงานถูกแบ่งออกเป็น 6 ขั้นตอนหลักแบบเป็นสัดส่วน (Modular Structure):
+The workflow is divided into 6 modular stages:
 
 ```
 [ PetImages Data ] 
        │
        ▼
- 1. data_loader.py       ──► โหลดรูปภาพ BGR, Resize เบื้องต้น
+ 1. data_loader.py       ──► Loads BGR images and handles initial resizing
        │
        ▼
- 2. preprocessing.py     ──► แปลงเป็น RGB & ปรับฟอร์แมต NumPy Array (uint8)
+ 2. preprocessing.py   ──► Converts BGR to RGB & formats to NumPy Arrays (uint8)
        │
        ▼
- 3. split_data.py        ──► แบ่ง Train / Validation / Test ด้วย Stratified Sampling
+ 3. split_data.py        ──► Splits Train / Validation / Test sets using Stratified Sampling
        │
        ▼
- 4. cnn_model.py         ──► เทรนด้วย CNN + Data Augmentation + Dropout + Callbacks
+ 4. cnn_model.py         ──► Trains CNN with Data Augmentation, Dropout, and Callbacks
        │
        ▼
- 5. evaluate.py          ──► คำนวณ Accuracy, Confusion Matrix & กราฟ Training History
+ 5. evaluate.py          ──► Calculates Accuracy, Confusion Matrix & plots Training History
        │
        ▼
- 6. test_cnn.py          ──► สุ่มภาพจาก Test Set มาทดสอบทำ Prediction และแสดงผล
+ 6. test_cnn.py          ──► Performs random inference testing on the Test Set & outputs visual predictions
 ```
 
-## 📁 โครงสร้างโปรเจกต์ (Project Directory)
+---
+
+## 📁 Project Structure
 
 ```
 lab7/
-├── PetImages/                   # โฟลเดอร์ชุดข้อมูลภาพหลัก
-│   ├── Spider/                  # ภาพถ่ายแมงมุม
-│   └── Centipede/               # ภาพถ่ายตะขาบ
-├── classification/              # โซนซอร์สโค้ดการทำงาน
-│   ├── data_loader.py           # โหลดไฟล์ภาพและคัดกรองไฟล์ที่เสียหาย
-│   ├── preprocessing.py         # แปลง Color Space (BGR->RGB) และ Format Data
-│   ├── split_data.py            # สเกลการแบ่งข้อมูลเป็นสัดส่วนที่สมดุล
-│   ├── cnn_model.py             # โครงสร้างชั้น Neural Network และระบบ Training
-│   ├── evaluate.py              # คำนวณ Accuracy, Report และพล็อตภาพกราฟ
-│   ├── main.py                  # สคริปต์หลักสั่งรันทั้ง Pipeline
-│   ├── test_cnn.py              # สคริปต์ทดสอบสุ่มภาพจาก Test Set ทำ Prediction
-│   └── outputs/                 # ผลลัพธ์และโมเดลที่ถูกบันทึกหลังรันสำเร็จ
-│       ├── cnn_model.keras      # ไฟล์น้ำหนักโมเดล CNN (Best Weights)
-│       ├── classes.json         # ดัชนีชื่อคลาสข้อมูล
-│       ├── history.json         # ค่า Loss และ Accuracy ในแต่ละ Epoch
-│       ├── training_history.png # กราฟแสดงการเรียนรู้ (Learning Curves)
-│       ├── confusion_matrix.png # แผนภูมิ Confusion Matrix
-│       └── prediction_sample.png# ตัวอย่างผลลัพธ์การสุ่มทดสอบทำนายภาพ
+├── PetImages/                    # Dataset directory
+│   ├── Spider/                   # Spider image folder
+│   └── Centipede/                # Centipede image folder
+├── classification/               # Source code directory
+│   ├── data_loader.py            # Loads images and filters out corrupted files
+│   ├── preprocessing.py         # Converts Color Space (BGR->RGB) and formats data
+│   ├── split_data.py            # Stratified dataset split script
+│   ├── cnn_model.py             # CNN Architecture and Training pipeline
+│   ├── evaluate.py              # Evaluates metrics and plots performance charts
+│   ├── main.py                  # Main script to execute the entire pipeline
+│   ├── test_cnn.py              # Inference script for random test predictions
+│   └── outputs/                 # Artifacts and saved model outputs
+│       ├── cnn_model.keras      # Saved trained model (Best Weights)
+│       ├── classes.json         # Class index mappings
+│       ├── history.json         # Loss and Accuracy metrics per epoch
+│       ├── training_history.png # Training history curves
+│       ├── confusion_matrix.png # Confusion matrix plot
+│       └── prediction_sample.png# Random sample inference output image
 └── README.md
 ```
 
 ---
 
-## 🛠️ โครงสร้างโมเดล CNN (`cnn_model.py`)
+## 🛠️ CNN Architecture (`cnn_model.py`)
 
-ออกแบบเพื่อเน้นประสิทธิภาพและป้องกันปัญหา **Overfitting** สำหรับชุดข้อมูลขนาดเล็ก:
+Designed for optimal performance while preventing **Overfitting** on small-to-medium datasets:
 
-* **In-Model Normalization:** ใช้ชั้น \`Rescaling(1./255)\` เพื่อปรับช่วงพิกเซล ($0–255 \rightarrow 0–1$) โดยอัตโนมัติในโมเดล
-* **Data Augmentation:** เพิ่ม \`RandomFlip(\"horizontal\")\` และ \`RandomRotation(0.05)\` เพื่อเพิ่มความหลากหลายของภาพฝึกซ้อม
+* **In-Model Normalization:** `Rescaling(1./255)` layer scales pixel values ($0–255 \rightarrow 0–1$) directly inside the model.
+* **Data Augmentation:** Includes `RandomFlip("horizontal")` and `RandomRotation(0.05)` to increase training variance.
 * **Feature Extraction (3 Blocks):**
   * **Block 1:** Conv2D (32 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
   * **Block 2:** Conv2D (64 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
   * **Block 3:** Conv2D (128 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
 * **Classification Head:** 
-  * Flatten()\ + \Dense(128, activation='relu')\
-  * Dropout(0.4)\ ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
-  * Dense(num_classes, activation='softmax')\ ประมวลผลความน่าจะเป็นของคลาส
+  * `Flatten()` + `Dense(128, activation='relu')`
+  * `Dropout(0.4)` to randomly drop neurons and mitigate memorization.
+  * `Dense(num_classes, activation='softmax')` for multi-class probability outputs.
 * **Optimization & Callbacks:**
-  * Optimizer: **Adam** (Learning Rate = \1e-4\)
-  * Loss Function: **Sparse Categorical Crossentropy**
-  * EarlyStopping\: หยุดการฝึกเมื่อ Validation Loss ไม่ดีขึ้นต่อเนื่อง
-  * ReduceLROnPlateau\: ปรับลด Learning Rate อัตโนมัติเมื่อค่า Loss เริ่มคงที่
+  * **Optimizer:** Adam ($\text{Learning Rate} = 10^{-4}$)
+  * **Loss Function:** Sparse Categorical Crossentropy
+  * **EarlyStopping:** Halts training when validation loss stops improving.
+  * **ReduceLROnPlateau:** Automatically decays learning rate when loss plateaus.
 
 ---
 
-## 🚀 ขั้นตอนการติดตั้งและการใช้งาน (Quick Start)
+## 🚀 Quick Start
 
-### 1. ติดตั้ง Dependencies
+### 1. Install Dependencies
 ```bash
 pip install tensorflow opencv-python scikit-learn matplotlib numpy
 ```
 
-### 2. การจัดวางไฟล์ชุดข้อมูล
-นำโฟลเดอร์ภาพวางไว้ในไดเรกทอรี \PetImages/\ แยกตามชื่อคลาส:
+### 2. Dataset Setup
+Organize your images inside the `PetImages/` directory structured by class name:
 ```
 PetImages/
 ├── Spider/
 └── Centipede/
 ```
 
-### 3. รันกระบวนการเรียนรู้และประเมินผล (Execution)
-สั่งรัน pipeline หลักเพียงคำสั่งเดียว ระบบจะเริ่มทำงานตั้งแต่ขั้นตอนที่ 1 ถึง 6:
+### 3. Run Training & Evaluation Pipeline
+Execute the full pipeline from data processing to evaluation with a single command:
 ```bash
 python classification/main.py
 ```
 
-### 4. ทดสอบสุ่มทำนายภาพ (Inference Test)
-ทดสอบนำโมเดลที่เทรนเสร็จแล้วมารันทำนายภาพสุ่มจากชุด Test Set:
+### 4. Run Inference Test
+Test the saved model on random samples from the test set:
 ```bash
 python classification/test_cnn.py
 ```
 
 ---
 
-## 📊 รายงานผลลัพธ์ (Artifacts & Output Files)
+## 📊 Artifacts & Outputs
 
-หลังรันสคริปต์เรียบร้อย ผลลัพธ์ทั้งหมดจะถูกสร้างไว้ที่ \`classification/outputs/\`:
+All output files are saved to `classification/outputs/` upon successful execution:
 
-| ไฟล์ผลลัพธ์ | ประเภท | คำอธิบาย |
+| File Name | Type | Description |
 | :--- | :--- | :--- |
-| **\training_history.png\** | Image | กราฟแนวโน้ม Accuracy & Loss เปรียบเทียบระหว่าง Training และ Validation Sets |
-| **\confusion_matrix.png\** | Image | แสดงสถิติจำนวนภาพที่ทายถูกต้องและผิดพลาดของแต่ละคลาส |
-| **\prediction_sample.png\** | Image | ตัวอย่างผลการสุ่มทำนาย พร้อมแสดงระดับความมั่นใจ (%) และสถานะ Correct/Wrong |
-| **\cnn_model.keras\** | Model File | โมเดลสำเร็จรูปที่พร้อมนำไปปรับใช้ (Deploy) ร่วมกับระบบอื่น |
-'''
+| **`training_history.png`** | Image | Comparison plots for Loss & Accuracy across Epochs (Train vs Val) |
+| **`confusion_matrix.png`** | Image | Matrix showing correct vs incorrect prediction distribution per class |
+| **`prediction_sample.png`** | Image | Visual prediction results with confidence scores (%) and correctness status |
+| **`cnn_model.keras`** | Model File | Exported Keras model ready for deployment |
