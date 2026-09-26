@@ -1,6 +1,6 @@
-# 🕷️ Spider vs. Centipede CNN Image Classifier
+# 🕷️ CNN Image Classification: Spider vs Centipede 🐛
 
-ระบบประมวลผลและจำแนกภาพถ่ายแมงมุม (Spider) และตะขาบ (Centipede) แบบ End-to-End ด้วยสถาปัตยกรรม **Convolutional Neural Network (CNN)** ออกแบบให้มีโครงสร้างเป็นโมดูล (Modular Pipeline) รองรับ Data Augmentation, Regularization และระบบสุ่มทดสอบการทำนายภาพอัตโนมัติ
+ระบบจำแนกภาพถ่ายแมงมุม (Spider) และตะขาบ (Centipede) ด้วยเทคโนโลยี **Convolutional Neural Networks (CNN)** แบบ End-to-End Pipeline จัดโครงสร้างโปรเจกต์แบบเป็นสัดส่วน (Modular) รองรับ Data Augmentation, Regularization และระบบบันทึกผลการประเมินอัตโนมัติ
 
 ---
 
