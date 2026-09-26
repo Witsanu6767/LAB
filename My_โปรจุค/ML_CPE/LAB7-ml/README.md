@@ -68,14 +68,14 @@ lab7/
   * **Block 2:** Conv2D (64 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
   * **Block 3:** Conv2D (128 Filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
 * **Classification Head:** 
-  * \Flatten()\ + \Dense(128, activation='relu')\
-  * \Dropout(0.4)\ ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
-  * \Dense(num_classes, activation='softmax')\ ประมวลผลความน่าจะเป็นของคลาส
+  * Flatten()\ + \Dense(128, activation='relu')\
+  * Dropout(0.4)\ ตัดการเชื่อมต่อสุ่มป้องกันการจดจำข้อผิดพลาด
+  * Dense(num_classes, activation='softmax')\ ประมวลผลความน่าจะเป็นของคลาส
 * **Optimization & Callbacks:**
   * Optimizer: **Adam** (Learning Rate = \1e-4\)
   * Loss Function: **Sparse Categorical Crossentropy**
-  * \EarlyStopping\: หยุดการฝึกเมื่อ Validation Loss ไม่ดีขึ้นต่อเนื่อง
-  * \ReduceLROnPlateau\: ปรับลด Learning Rate อัตโนมัติเมื่อค่า Loss เริ่มคงที่
+  * EarlyStopping\: หยุดการฝึกเมื่อ Validation Loss ไม่ดีขึ้นต่อเนื่อง
+  * ReduceLROnPlateau\: ปรับลด Learning Rate อัตโนมัติเมื่อค่า Loss เริ่มคงที่
 
 ---
 
