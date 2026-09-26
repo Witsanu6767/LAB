@@ -16,10 +16,10 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
 
 IMG_SIZE = 100
 TEST_SIZE = 0.2
-VAL_SIZE = 0.1
-MAX_PER_CLASS = 3000   # None = use all images
-EPOCHS = 30
-BATCH_SIZE = 32
+VAL_SIZE = 0.15
+MAX_PER_CLASS = None   # None = use all images
+EPOCHS = 80
+BATCH_SIZE = 2
 
 
 def main():

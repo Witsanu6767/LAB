@@ -1,55 +1,45 @@
 import json
 import os
 
+import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
 
 def build_model(input_shape, num_classes):
-    """Convolutional neural network: 3 conv blocks -> dense head."""
+    inputs = keras.Input(shape=input_shape)
 
-    model = keras.Sequential([
-        keras.Input(shape=input_shape),
+    # Normalize 0-255 to 0-1 inside the model, so inference code never
+    # has to remember to do it
+    x = layers.Rescaling(1.0 / 255)(inputs)
 
-        # Normalize 0-255 to 0-1 inside the model, so inference code never
-        # has to remember to do it
-        layers.Rescaling(1.0 / 255),
+    # Light augmentation, only active during training.
+    # This is what keeps a small CNN from memorising the training set.
+    x = layers.RandomFlip("horizontal")(x)
+    x = layers.RandomRotation(0.05)(x)
 
-        # Light augmentation, only active during training.
-        # This is what keeps a small CNN from memorising the training set.
-        layers.RandomFlip("horizontal"),
-        layers.RandomRotation(0.1),
-        layers.RandomZoom(0.1),
+    # 3. Feature Extractor
+    x = layers.Conv2D(32, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2))(x)
 
-        layers.Conv2D(32, 3, padding="same", activation="relu"),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D(),
+    x = layers.Conv2D(64, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2))(x)
 
-        layers.Conv2D(64, 3, padding="same", activation="relu"),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D(),
+    x = layers.Conv2D(128, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2))(x)
 
-        layers.Conv2D(128, 3, padding="same", activation="relu"),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D(),
+    # 4. Dense Classifier
+    x = layers.Flatten()(x)
+    x = layers.Dense(128, activation="relu")(x)
+    x = layers.Dropout(0.4)(x)
+    
+    outputs = layers.Dense(num_classes, activation="softmax")(x)
 
-        # Pooling instead of Flatten keeps the dense head small
-        layers.GlobalAveragePooling2D(),
-        layers.Dropout(0.3),
-        layers.Dense(128, activation="relu"),
-        layers.Dropout(0.3),
-
-        # 1 sigmoid output for 2 classes, softmax otherwise
-        layers.Dense(
-            1 if num_classes == 2 else num_classes,
-            activation="sigmoid" if num_classes == 2 else "softmax"
-        ),
-    ])
+    model = keras.Model(inputs=inputs, outputs=outputs)
 
     model.compile(
-        optimizer=keras.optimizers.Adam(1e-3),
-        loss="binary_crossentropy" if num_classes == 2
-             else "sparse_categorical_crossentropy",
+        optimizer=keras.optimizers.Adam(learning_rate=1e-4),
+        loss="sparse_categorical_crossentropy",
         metrics=["accuracy"],
     )
 
@@ -57,19 +47,17 @@ def build_model(input_shape, num_classes):
 
 
 def train_model(X_train, y_train, X_val, y_val, num_classes,
-                output_dir=None, epochs=30, batch_size=32):
-    """Build, train and save the model. Returns (model, history)."""
+                output_dir=None, epochs=80, batch_size=2):
 
     model = build_model(X_train.shape[1:], num_classes)
     model.summary()
 
     callbacks = [
-        # Stop when validation loss stops improving, keep the best weights
         keras.callbacks.EarlyStopping(
-            monitor="val_loss", patience=5, restore_best_weights=True
+            monitor="val_loss", patience=40, restore_best_weights=True
         ),
         keras.callbacks.ReduceLROnPlateau(
-            monitor="val_loss", factor=0.5, patience=3, min_lr=1e-5
+            monitor="val_loss", factor=0.3, patience=30, min_lr=1e-5
         ),
     ]
 
@@ -97,11 +85,5 @@ def train_model(X_train, y_train, X_val, y_val, num_classes,
 
 
 def predict_model(model, X_test):
-
     probabilities = model.predict(X_test, verbose=0)
-
-    # Binary head outputs one probability, multiclass outputs one per class
-    if probabilities.shape[-1] == 1:
-        return (probabilities.ravel() > 0.5).astype(int)
-
     return probabilities.argmax(axis=1)
