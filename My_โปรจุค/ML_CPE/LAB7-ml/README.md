@@ -7,6 +7,7 @@
 ## 📌 สถาปัตยกรรมระบบ (System Architecture)
 
 โครงสร้างการทำงานถูกแบ่งออกเป็น 6 ขั้นตอนหลักแบบเป็นสัดส่วน (Modular Structure):
+
 ```text
 [ PetImages Data ] 
        │
@@ -27,23 +28,3 @@
        │
        ▼
  6. test_cnn.py          ──► สุ่มภาพจาก Test Set มาทดสอบทำ Prediction และแสดงผล
-lab7/
-├── PetImages/                   # โฟลเดอร์เก็บรูปภาพจำแนกตามคลาส
-│   ├── Spider/                  # รูปภาพแมงมุม
-│   └── Centipede/               # รูปภาพตะขาบ
-├── classification/              # โฟลเดอร์ซอร์สโค้ดหลัก
-│   ├── data_loader.py           # ฟังก์ชันอ่านไฟล์ภาพจาก Disk
-│   ├── preprocessing.py         # ฟังก์ชันจัดการ Color Space และ Resizing
-│   ├── split_data.py            # ฟังก์ชันตัดแบ่ง Train/Val/Test Sets
-│   ├── cnn_model.py             # โครงสร้างโมเดล CNN และการเทรน
-│   ├── evaluate.py              # การแสดงผล Metrics, Matrix และ Curves
-│   ├── main.py                  # สคริปต์หลักสำหรับรันกระบวนการทั้งหมด
-│   ├── test_cnn.py              # สคริปต์สุ่มรูปภาพจาก Test Set มาสแกนทายผล
-│   └── outputs/                 # โฟลเดอร์บันทึกไฟล์ Artifacts ทั้งหมดที่สร้างขึ้น
-│       ├── cnn_model.keras      # ไฟล์น้ำหนักโมเดลที่เทรนสำเร็จ
-│       ├── classes.json         # ชื่อคลาสของข้อมูล
-│       ├── history.json         # ประวัติ Loss/Accuracy ในการเทรน
-│       ├── training_history.png # กราฟเปรียบเทียบ Train vs Validation
-│       ├── confusion_matrix.png # เมทริกซ์การจำแนกความถูกต้อง
-│       └── prediction_sample.png# ตัวอย่างภาพทดสอบพร้อมผลการทาย
-└── README.md
