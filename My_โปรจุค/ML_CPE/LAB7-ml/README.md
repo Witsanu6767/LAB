@@ -30,6 +30,7 @@
  6. test_cnn.py          ──► สุ่มภาพจาก Test Set มาทดสอบทำ Prediction และแสดงผล
 ```
 ## 📁 โครงสร้างโปรเจกต์ (Directory Structure)
+
 ```
 lab7/
 ├── PetImages/                   # โฟลเดอร์เก็บรูปภาพจำแนกตามคลาส
@@ -51,4 +52,16 @@ lab7/
 │       ├── confusion_matrix.png # เมทริกซ์การจำแนกความถูกต้อง
 │       └── prediction_sample.png# ตัวอย่างภาพทดสอบพร้อมผลการทาย
 └── README.md
+```
+## 🛠️ รายละเอียดโครงสร้างโมเดล CNN
+
+โมเดลออกแบบมาเพื่อป้องกันการจดจำชุดข้อมูลฝึกซ้อม (Overfitting) ในภาพขนาดเล็กโดยเฉพาะ:
+
+```
+1.Input Normalization Layer: ใช้ Rescaling(1./255) ปรับค่าพิกเซลจาก $0-255$ ให้เป็นช่วง $0-1$ ภายในตัวโมเดลโดยตรง
+2.Data Augmentation Layer: ใส่ RandomFlip("horizontal") และ RandomRotation(0.05) เพื่อสุ่มกลับด้านและหมุนภาพเล็กน้อยเฉพาะช่วงเทรน
+3.Convolutional Extractor (3 Blocks):Block 1: Conv2D (32 filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)Block 2: Conv2D (64 filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)Block 3: Conv2D (128 filters, $3 \times 3$, ReLU) + MaxPooling2D ($2 \times 2$)
+4.Dense Classifier:Flatten() + Dense(128, activation='relu')Dropout(0.4) เพื่อตัดการเชื่อมต่อแบบสุ่ม ช่วยให้โมเดลกระจายการเรียนรู้Dense(num_classes, activation='softmax') สำหรับ Output Probability
+5.Optimizer & Loss: ใช้ Adam(learning_rate=1e-4) ร่วมกับ sparse_categorical_crossentropy
+6.Training Callbacks:EarlyStopping: สั่งหยุดเทรนเมื่อ val_loss ไม่ดีขึ้นติดต่อกันตามที่กำหนดReduceLROnPlateau: ลด Learning Rate ลงอัตโนมัติเมื่อค่า Loss เริ่มชะลอตัว
 ```
