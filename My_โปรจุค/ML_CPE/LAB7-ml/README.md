@@ -56,7 +56,4 @@ lab7/
 ## 🛠️ รายละเอียดโครงสร้างโมเดล CNN
 
 โมเดลออกแบบมาเพื่อป้องกันการจดจำชุดข้อมูลฝึกซ้อม (Overfitting) ในภาพขนาดเล็กโดยเฉพาะ:
-
-```
 <img width="751" height="619" alt="Screenshot 2026-09-26 162505" src="https://github.com/user-attachments/assets/186a3bbd-f964-4e20-bff6-acb59b5c4662" />
-```
