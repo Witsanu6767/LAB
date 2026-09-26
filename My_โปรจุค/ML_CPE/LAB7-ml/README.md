@@ -7,7 +7,7 @@
 ## 📌 สถาปัตยกรรมระบบ (System Architecture)
 
 โครงสร้างการทำงานถูกแบ่งออกเป็น 6 ขั้นตอนหลักแบบเป็นสัดส่วน (Modular Structure):
-
+```text
 [ PetImages Data ] 
        │
        ▼
