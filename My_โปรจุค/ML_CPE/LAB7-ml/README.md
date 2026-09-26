@@ -29,7 +29,7 @@
        ▼
  6. test_cnn.py          ──► สุ่มภาพจาก Test Set มาทดสอบทำ Prediction และแสดงผล
 ```
-#📁 โครงสร้างโปรเจกต์ (Directory Structure)
+## 📁 โครงสร้างโปรเจกต์ (Directory Structure)
 ```
 lab7/
 ├── PetImages/                   # โฟลเดอร์เก็บรูปภาพจำแนกตามคลาส
