@@ -24,7 +24,7 @@ BATCH_SIZE = 56
 def main():
 
     print("--" * 30)
-    print("VGG (Deep CNN) Image Recognition: Cat vs Dog")
+    print("VGG (Deep CNN) Image Recognition: Spider vs Centipede")
     print("--" * 30)
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
