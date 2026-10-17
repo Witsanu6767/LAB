@@ -1,0 +1,10 @@
+path: dataset
+train: train/images
+val: val/images
+test: test/images
+
+nc: 10
+names: [
+    "person", "animal", "car", "bus", "truck",
+    "bike", "motor", "traffic light", "traffic sign", "train"
+]
