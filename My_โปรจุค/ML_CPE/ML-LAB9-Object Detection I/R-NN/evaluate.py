@@ -13,10 +13,9 @@ IMG_SIZE = 64
 NUM_CLASSES = 10
 
 CLASSES = [
-    "person", "rider", "car", "bus", "truck",
+    "person", "animal", "car", "bus", "truck",
     "bike", "motor", "traffic light", "traffic sign", "train"
 ]
-
 
 def load_crops(split="test", limit=200):
     images_dir = DATASET / split / "images"
@@ -50,7 +49,7 @@ def load_crops(split="test", limit=200):
         h, w = image.shape[:2]
 
         for line in label_path.read_text(
-            encoding="utf-8"
+            encoding="utf-8-sig", errors="ignore"
         ).splitlines():
 
             parts = line.split()
@@ -93,7 +92,6 @@ def load_crops(split="test", limit=200):
         np.asarray(ys, dtype=np.int32)
     )
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=200)
@@ -133,7 +131,6 @@ def main():
             zero_division=0
         )
     )
-
 
 if __name__ == "__main__":
     main()

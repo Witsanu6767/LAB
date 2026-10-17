@@ -1,11 +1,9 @@
-
 from pathlib import Path
 import argparse
 import numpy as np
 import cv2
 import tensorflow as tf
 
-# Paths
 ROOT = Path(__file__).resolve().parent.parent
 DATASET = ROOT / "dataset"
 OUT = Path(__file__).resolve().parent / "outputs"
@@ -14,6 +12,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 IMG_SIZE = 64
 NUM_CLASSES = 10
 
+CLASSES = [
+    "person", "animal", "car", "bus", "truck",
+    "bike", "motor", "traffic light", "traffic sign", "train"
+]
 
 def load_crops(split="train", limit=200):
     images_dir = DATASET / split / "images"
@@ -46,7 +48,7 @@ def load_crops(split="train", limit=200):
 
         h, w = image.shape[:2]
 
-        for line in label_path.read_text(encoding="utf-8").splitlines():
+        for line in label_path.read_text(encoding="utf-8-sig", errors="ignore").splitlines():
             parts = line.split()
             if len(parts) != 5:
                 continue
@@ -86,7 +88,6 @@ def load_crops(split="train", limit=200):
 
     return x, y
 
-
 def make_model():
     model = tf.keras.Sequential([
         tf.keras.layers.Input(shape=(IMG_SIZE, IMG_SIZE, 3)),
@@ -106,7 +107,6 @@ def make_model():
         metrics=["accuracy"]
     )
     return model
-
 
 def main():
     p = argparse.ArgumentParser()
@@ -130,7 +130,6 @@ def main():
 
     model.save(OUT / "model.keras")
     print("Saved:", OUT / "model.keras")
-
 
 if __name__ == "__main__":
     main()

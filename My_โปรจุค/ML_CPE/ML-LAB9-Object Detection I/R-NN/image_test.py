@@ -1,6 +1,3 @@
-
-
-
 from pathlib import Path
 import argparse
 import random
@@ -14,12 +11,11 @@ OUT = Path(__file__).resolve().parent / "outputs"
 MODEL_PATH = OUT / "model.keras"
 
 CLASSES = [
-    "person", "rider", "car", "bus", "truck",
+    "person", "animal", "car", "bus", "truck",
     "bike", "motor", "traffic light", "traffic sign", "train"
 ]
 
 IMG_SIZE = 64
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -61,7 +57,7 @@ def main():
     boxes = []
 
     for line in label_path.read_text(
-        encoding="utf-8"
+        encoding="utf-8-sig", errors="ignore"
     ).splitlines():
 
         parts = line.split()
@@ -126,7 +122,6 @@ def main():
     print("Input:", image_path)
     print("Objects:", len(boxes))
     print("Saved:", save_path)
-
 
 if __name__ == "__main__":
     main()
