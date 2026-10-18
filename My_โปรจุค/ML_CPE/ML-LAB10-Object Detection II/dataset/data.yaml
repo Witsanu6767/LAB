@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 10
+names: ['bear', 'bird', 'cat', 'cow', 'dog', 'elephant', 'fish', 'horse', 'snake', 'zebra']
+
+roboflow:
+  workspace: wits-workspace-wfssm
+  project: my-first-project-esryf
+  version: 1
+  license: Private
+  url: https://app.roboflow.com/wits-workspace-wfssm/my-first-project-esryf/1
